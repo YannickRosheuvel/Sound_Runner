@@ -13,6 +13,20 @@ export const HomeStyles = {
         alignItems: 'center',
         backgroundColor: '#fff'
     },
+    StepCounter: {
+        flex: 5,
+        paddingTop: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity: 1,
+        fontSize: 24,
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        fontFamily: 'Ubuntu_500Medium',
+        fontWeight: 'bold',
+        color: '#8F8F8F'
+    },
     hello: {
         fontSize: 24,
         position: 'absolute',

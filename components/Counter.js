@@ -18,11 +18,11 @@
 
 // import { Pedometer } from "expo-sensors";
 
-// import CircularProgress from "react-native-circular-progress-indicator";
+// // import CircularProgress from "react-native-circular-progress-indicator";
 
  
 
-// export default function counter() {
+// export default function App() {
 
 //  const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
 
@@ -84,7 +84,7 @@
 
 //  return (
 
-//    <View style={stylez.container}>
+//    <View style={styles.container}>
 
 
 
@@ -101,7 +101,7 @@
 
 //        <View style={{ flex: 3 }}>
 
-//          <CircularProgress
+//          {/* <CircularProgress
 
 //            value={StepCount}
 
@@ -127,7 +127,7 @@
 
 //            titleStyle={{ fontWeight: "bold" }}
 
-//          />
+//          /> */}
 
 //        </View>
 
@@ -163,7 +163,7 @@
 
 //              style={[
 
-//                stylez.textDesign,
+//                styles.textDesign,
 
 //                { width: "93%", paddingLeft: 20, marginLeft: '-3.5%' },
 
@@ -185,7 +185,7 @@
 
 //              style={[
 
-//                stylez.textDesign,
+//                styles.textDesign,
 
 //                {  paddingLeft: 10, marginLeft: '23%' },
 
@@ -206,7 +206,6 @@
 //        </View>
 
 
-
 //    </View>
 
 //  );
@@ -215,7 +214,7 @@
 
  
 
-// const stylez = StyleSheet.create({
+// const styles = StyleSheet.create({
 
 //  container: {
 
@@ -267,61 +266,80 @@
 
 //    fontFamily: "Papyrus",
 
-//   },
+//  },
+
 // });
 
-import { StyleSheet, Text, SafeAreaView, Image, TouchableHighlight } from 'react-native';
-import arrow from '../assets/icons/Arrow.svg'
-import backgroundWork from '../assets/images/backgroundWork.svg'
-import avatar from '../assets/images/avatar.svg'
-import replay from '../assets/icons/replay.svg'
-import { WorkStyle } from '../assets/styles/WorkStyle';
-import { useState } from 'react';
+import { HomeStyles } from '../assets/styles/HomeStyles';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Pedometer } from 'expo-sensors';
+import Card from './Card'
 
+export default class App extends React.Component {
+  state = {
+    isPedometerAvailable: 'checking',
+    pastStepCount: 0,
+    currentStepCount: 0,
+  };
 
+  componentDidMount() {
+    this._subscribe();
+  }
 
-export default function counter({ navigation }) {
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
 
-    let [time, setTime] = useState(30)
+  _subscribe = () => {
+    this._subscription = Pedometer.watchStepCount(result => {
+      this.setState({
+        currentStepCount: result.steps,
+      });
+    });
 
-    const NavigateHome = () => {
-        navigation.navigate('Home')
-    }
-
-    if (time == 0) {
-        clearTimeout()
-    } else {
-        setTimeout(() => {
-            setTime(time - 1)
-        }, 1000)
-    }
-
-    const replayTimer = () => {
-        if (time == 0) {
-            setTimeout(() => {
-                setTime(time = 30)
-            })
-        } else {
-            clearTimeout(time = 31)
-        }
-    }
-
-    return (
-        <SafeAreaView style={styles.container}>
-            <TouchableHighlight onPress={NavigateHome} style={styles.touchArrow}>
-                <Image style={styles.arrow} source={arrow} />
-            </TouchableHighlight>
-            {/* <Image style={styles.avatar} source={avatar} /> */}
-            <Text style={styles.title}>Run</Text>
-            <Text style={styles.task}>Task 100m</Text>
-            <Text style={styles.timer} onChange={setTime}>{time}s</Text>
-            <TouchableHighlight onPress={replayTimer} style={styles.touchPlay}>
-                <Image style={styles.replay} source={replay} />
-            </TouchableHighlight>
-            {/* <Image style={styles.backgroundWork} source={backgroundWork} /> */}
-        </SafeAreaView>
+    Pedometer.isAvailableAsync().then(
+      result => {
+        this.setState({
+          isPedometerAvailable: String(result),
+        });
+      },
+      error => {
+        this.setState({
+          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
+        });
+      }
     );
+
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 1);
+    Pedometer.getStepCountAsync(start, end).then(
+      result => {
+        this.setState({ pastStepCount: result.steps });
+      },
+      error => {
+        this.setState({
+          pastStepCount: 'Could not get stepCount: ' + error,
+        });
+      }
+    );
+  };
+
+  _unsubscribe = () => {
+    this._subscription && this._subscription.remove();
+    this._subscription = null;
+  };
+
+  render() {
+    return (
+      <View style={styles.StepCounter}>
+        {/* <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text>
+        <Text>Steps taken in the last 24 hours: {this.state.pastStepCount}</Text> */}
+        <Text>steps: {this.state.currentStepCount}</Text>
+      </View>
+    );
+  }
 }
 
-
-const styles = StyleSheet.create(WorkStyle);
+const styles = StyleSheet.create(HomeStyles);

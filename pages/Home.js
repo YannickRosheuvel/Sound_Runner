@@ -20,7 +20,7 @@ export default function Home({ navigation }) {
         navigation.navigate('PushUps')
     }
     const NavigateCounter = () => {
-        navigation.navigate('counter')
+        navigation.navigate('Counter')
     }
 
     return (

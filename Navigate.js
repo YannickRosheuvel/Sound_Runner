@@ -6,13 +6,14 @@ import Home from './pages/Home';
 import Run from './pages/Run';
 import Powerlifting from './pages/Powerlifting';
 import PushUps from './pages/PushUps';
-import counter from './pages/counter';
+import Counter from './components/Counter';
 
 const Stack = createStackNavigator();
 
 export default function Navigate() {
     return <NavigationContainer>
         <Stack.Navigator>
+
             <Stack.Screen
                 name='Main'
                 component={Main}
@@ -39,10 +40,11 @@ export default function Navigate() {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name='counter'
-                component={counter}
+                name='Counter'
+                component={Counter}
                 options={{ headerShown: false }}
             />
+
         </Stack.Navigator>
     </NavigationContainer>
 }

@@ -48,7 +48,8 @@ export const WorkStyle = {
         fontFamily: 'Ubuntu_500Medium',
         fontWeight: 'bold',
         color: '#B0D0FF',
-        fontSize: 144
+        fontSize: 144,
+        position: 'absolute',
     },
     replay: {
         width: 71,

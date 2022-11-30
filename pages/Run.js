@@ -5,8 +5,7 @@ import avatar from '../assets/images/avatar.svg'
 import replay from '../assets/icons/replay.svg'
 import { WorkStyle } from '../assets/styles/WorkStyle';
 import { useState } from 'react';
-
-
+import Counter from '../components/Counter';
 
 export default function Run({ navigation }) {
 
@@ -15,6 +14,7 @@ export default function Run({ navigation }) {
     const NavigateHome = () => {
         navigation.navigate('Home')
     }
+
 
     if (time == 0) {
         clearTimeout()
@@ -35,7 +35,9 @@ export default function Run({ navigation }) {
     }
 
     return (
+
         <SafeAreaView style={styles.container}>
+            <Counter />
             <TouchableHighlight onPress={NavigateHome} style={styles.touchArrow}>
                 <Image style={styles.arrow} source={arrow} />
             </TouchableHighlight>
