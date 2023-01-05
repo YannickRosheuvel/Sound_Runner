@@ -7,6 +7,7 @@ import Run from './pages/Run';
 import Powerlifting from './pages/Powerlifting';
 import PushUps from './pages/PushUps';
 import Counter from './components/Counter';
+import SoundPlayer from './components/SoundPlayer';
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,11 @@ export default function Navigate() {
             <Stack.Screen
                 name='Counter'
                 component={Counter}
+                options={{ headerShown: false }}
+            />
+                        <Stack.Screen
+                name='SoundPlayer'
+                component={SoundPlayer}
                 options={{ headerShown: false }}
             />
 
