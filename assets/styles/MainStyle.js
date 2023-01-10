@@ -33,5 +33,59 @@ export const MainStyles = {
         textTransform: 'uppercase',
         fontWeight: 'bold',
         bottom: 25
-    }
-}
+    },
+        container: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        formContainer: {
+            width: '80%',
+            padding: 20,
+            backgroundColor: 'white',
+            borderRadius: 10,
+            alignItems: 'center',
+        },
+        label: {
+            fontSize: 18,
+            marginBottom: 10,
+            fontWeight: 'bold',
+        },
+        input: {
+            width: '100%',
+            padding: 12,
+            marginBottom: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 4,
+        },
+        hint: {
+            fontSize: 12,
+            color: 'grey',
+            marginBottom: 10,
+        },
+        submitButton: {
+            backgroundColor: '#2196f3',
+            padding: 12,
+            width: '100%',
+            alignItems: 'center',
+            marginTop: 20,
+            borderRadius: 4,
+        },
+        submitButtonText: {
+            color: 'white',
+            fontWeight: 'bold',
+        },
+        registerButton: {
+            backgroundColor: '#ddd',
+            padding: 12,
+            width: '100%',
+            alignItems: 'center',
+            marginTop: 10,
+            borderRadius: 4,
+       
+    
+    
+    
+    
+}}

@@ -8,6 +8,8 @@ import Powerlifting from './pages/Powerlifting';
 import PushUps from './pages/PushUps';
 import Counter from './components/Counter';
 import SoundPlayer from './components/SoundPlayer';
+import RegisterScreen from './pages/RegisterScreen';
+import Register from './pages/Register';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +50,16 @@ export default function Navigate() {
                         <Stack.Screen
                 name='SoundPlayer'
                 component={SoundPlayer}
+                options={{ headerShown: false }}
+            />
+                                    <Stack.Screen
+                name='RegisterScreen'
+                component={RegisterScreen}
+                options={{ headerShown: false }}
+            />
+                                                <Stack.Screen
+                name='Register'
+                component={Register}
                 options={{ headerShown: false }}
             />
 

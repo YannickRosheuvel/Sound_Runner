@@ -35,7 +35,9 @@ export default function Home({ navigation }) {
             <Box />
             <Text style={styles.exercises}>Running exercises</Text>
             <View style={styles.cardList}>
+            <Card click={NavigateRun}/>
             <Card click={SoundPlayer}  />
+            <Card click={NavigateRun}/>
                 <Card click={NavigateCounter}  />
                 <Card click={NavigateRun}/>
                 <Card click={NavigatePowerlifting}  />

@@ -56,7 +56,11 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 import { Audio } from 'expo-av';
 
 export default function SoundPlayer() {
+  
+  useEffect(() => {
+    playSound();
 
+  }), [];
 
   const [sound, setSound] = React.useState();
 
@@ -147,7 +151,7 @@ export default function SoundPlayer() {
 
   return (
     <View style={styles.container}>
-      <Button title="Play Sound" onPress={playSound} />
+      {/* <Button title="Play Sound" onPress={playSound} /> */}
     </View>
   );
 }
